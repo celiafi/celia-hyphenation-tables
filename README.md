@@ -26,7 +26,7 @@ Celia specific hyphenation tables for the DAISY Pipeline 2
         </repository>
         <repository>
           <id>github</id>
-          <url>https://maven.pkg.github.com/OWNER/REPOSITORY</url>
+          <url>https://maven.pkg.github.com/celiafi/celia-hyphenation-tables</url>
           <snapshots>
             <enabled>true</enabled>
           </snapshots>
