@@ -3,8 +3,8 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.daisy.pipeline.modules.braille</groupId>
-  <artifactId>mod-celia</artifactId>
+  <groupId>fi.celia</groupId>
+  <artifactId>celia-hyphenation-tables</artifactId>
   <version>1.5.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
