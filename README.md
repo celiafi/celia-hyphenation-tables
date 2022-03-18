@@ -45,6 +45,10 @@ Celia specific hyphenation tables for the DAISY Pipeline 2
 </settings>
 ```
 
+- USERNAME should be your github username and TOKEN your personal github access token that you use to push to github.
+
+- For more info on the settings.xml check https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry
+
 - Modify version number on pom.xml
 
 - Deploy with command:
