@@ -1,55 +1,63 @@
-# pipeline-mod-celia
-Celia specific modules for the DAISY Pipeline 2
+# celia-hyphenation-tables
 
-## Release procedure
-- View changes since previous release and update version number according to semantic versioning.
+Celia specific hyphenation tables for the DAISY Pipeline 2
 
-  ```sh
-  git diff v1.0.0...HEAD
-  VERSION=1.0.1
-  ```
+## How to release as github package
 
-- Create a release branch.
+- Create file ~/.m2/settings.xml:
 
-  ```sh
-  git checkout -b release/${VERSION}
-  ```
-  
-- Resolve snapshot dependencies and commit.
-- Set the version in pom.xml to `${VERSION}-SNAPSHOT` and commit.
-- Make release notes and commit. (View changes since previous release with `git diff v1.1.0...HEAD`
-  and look for relevant Github issues on [https://github.com/search](https://github.com/search))
-- Perform the release with Maven.
+```xml
+  <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                      http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+  <activeProfiles>
+    <activeProfile>github</activeProfile>
+  </activeProfiles>
+
+  <profiles>
+    <profile>
+      <id>github</id>
+      <repositories>
+        <repository>
+          <id>central</id>
+          <url>https://repo1.maven.org/maven2</url>
+        </repository>
+        <repository>
+          <id>github</id>
+          <url>https://maven.pkg.github.com/OWNER/REPOSITORY</url>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
+
+  <servers>
+    <server>
+      <id>github</id>
+      <username>USERNAME</username>
+      <password>TOKEN</password>
+    </server>
+  </servers>
+</settings>
+```
+
+- Modify version number on pom.xml
+
+- Deploy with command:
 
 ```sh
-  mvn clean release:clean release:prepare
-  mvn release:perform
-  ```
-  
-- Push and make a pull request (for turning an existing issue into a PR use the `-i <issueno>` switch).
+mvn deploy --settings ~/.m2/settings.xml
+```
 
-  ```sh
-  git push origin release/${VERSION}:release/${VERSION}
-  hub pull-request -b snaekobbi:master -h snaekobbi:release/${VERSION} -m "Release version ${VERSION}"
-  ```
-  
-- Stage the artifact on https://oss.sonatype.org and comment on pull request.
+- Local builds can be done with
 
-  ```sh
-  ghi comment -m staged ${ISSUE_NO}
-  ```
-  
-- Test and stage all projects that depend on this release before continuing.
-- Release the artifact on https://oss.sonatype.org  and close pull request.
+```sh
+mvn clean package
+```
 
-  ```sh
-  ghi comment --close -m released ${ISSUE_NO}
-  ```
-  
-- Push the tag.
 
-  ```sh
-  git push origin v${VERSION}
-  ```
-  
-- Add the release notes to http://github.com/snaekobbi/pipeline-mod-celia/releases/v${VERSION}.
+
