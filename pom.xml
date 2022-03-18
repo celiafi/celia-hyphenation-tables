@@ -98,7 +98,7 @@
     <repository>
       <id>github</id>
       <name>GitHub celiafi Apache Maven Packages</name>
-      <url>https://maven.pkg.github.com/celiafi/pipeline-mod-celia</url>
+      <url>https://maven.pkg.github.com/celiafi/celia-hyphenation-tables</url>
     </repository>
   </distributionManagement>
 
