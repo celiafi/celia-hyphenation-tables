@@ -10,6 +10,12 @@
 
   <name>DP2 Braille Modules :: mod-celia</name>
 
+  <properties>
+   <maven.compiler.source>1.8</maven.compiler.source>
+   <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+
+
   <dependencies>
     <dependency>
       <groupId>com.googlecode.texhyphj</groupId>
